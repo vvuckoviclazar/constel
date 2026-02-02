@@ -3,6 +3,7 @@ import Input from "./components/input";
 import Label from "./components/label";
 import { AiFillDingtalkCircle } from "react-icons/ai";
 import Btn from "./components/btn";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -27,9 +28,11 @@ function App() {
             placeholder="Enter your password here..."
           />
         </div>
-        <Btn type="submit" className="submit-btn">
-          Confirm
-        </Btn>
+        <Link className="submit-link" to="/home">
+          <Btn type="submit" className="submit-btn">
+            Confirm
+          </Btn>
+        </Link>
       </form>
     </>
   );
