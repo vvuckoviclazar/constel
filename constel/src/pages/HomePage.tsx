@@ -1,13 +1,19 @@
-import Btn from "../components/btn.tsx";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+  }, [token, navigate]);
+
   return (
-    <>
-      <div className="sidebar"></div>
-      <div className="posts-div">
-        <h1>Hello</h1>
-      </div>
-      <div className="my-profile-div"></div>
-    </>
+    <div>
+      <h1>Home page</h1>
+    </div>
   );
 }
