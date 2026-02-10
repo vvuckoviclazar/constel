@@ -35,7 +35,7 @@ html {
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
-  margin-bottom: 20rem;
+  margin-bottom: 0rem;
 }
 
 .login-label {
@@ -51,6 +51,7 @@ html {
   padding: 12rem;
   border-radius: 7rem;
   border: 1rem solid rgb(155, 155, 155);
+  margin-bottom: 20rem;
 }
 
 .login-input::placeholder {
@@ -61,6 +62,10 @@ html {
 .login-input:focus {
   outline: 1rem solid rgb(0, 148, 247);
   border: 1rem solid white;
+}
+
+.password {
+  margin-bottom: 10rem;
 }
 
 .submit-btn {
@@ -76,6 +81,7 @@ html {
   border-radius: 7rem;
   cursor: pointer;
   transition: background 0.3s ease;
+  margin-top: 10rem;
 }
 
 .submit-btn:hover {
@@ -84,4 +90,20 @@ html {
 
 .submit-link {
   width: 100%;
+}
+
+.login-error {
+  background-color: red;
+  color: white;
+  width: 100%;
+  font-size: 16rem;
+  text-align: center;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+  border-radius: 7rem;
+}
+
+.profile-picture {
+  width: 50rem;
+  border-radius: 50rem;
 }
