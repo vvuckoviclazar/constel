@@ -107,3 +107,111 @@ html {
   width: 50rem;
   border-radius: 50rem;
 }
+
+.logOut-div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 20rem;
+}
+
+.home {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+.appLogo-div {
+  padding-left: 200rem;
+  padding-top: 20rem;
+}
+
+.home-logo {
+  margin-bottom: 40rem;
+}
+
+.home-h3-div {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  cursor: pointer;
+}
+
+.home-h3 {
+  font-size: 20rem;
+  color: rgb(0, 137, 234);
+}
+
+.house {
+  margin-bottom: 3rem;
+  color: rgb(0, 137, 234);
+}
+
+.posts-div {
+  display: flex;
+  align-items: center;
+  padding-left: 20rem;
+  padding-right: 20rem;
+  border-left: 1rem solid rgb(198, 198, 198);
+  border-right: 1rem solid rgb(198, 198, 198);
+  padding-top: 20rem;
+}
+
+.new-post-form {
+  width: 100%;
+  padding: 20rem;
+  background-color: rgb(246, 246, 246);
+  border-radius: 10rem;
+}
+
+.input-picture-div {
+  display: flex;
+  align-items: center;
+  gap: 10rem;
+}
+
+.post-input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1rem solid gray;
+  padding-bottom: 7rem;
+  outline: none;
+  font-size: 17rem;
+}
+
+.post-input:focus {
+  border-bottom: 1rem solid rgb(0, 148, 247);
+}
+
+.post-btn-div {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.profile-picture2 {
+  width: 55rem;
+  border-radius: 50rem;
+  margin-bottom: 20rem;
+}
+
+.new-post-btn {
+  background-color: rgb(0, 136, 234);
+  border: none;
+  color: white;
+  font-size: 22rem;
+  font-weight: bold;
+  letter-spacing: 0.5rem;
+  padding-top: 12rem;
+  padding-bottom: 12rem;
+  padding-left: 15rem;
+  padding-right: 15rem;
+  border-radius: 7rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.new-post-btn:hover {
+  background-color: rgb(0, 111, 189);
+}
