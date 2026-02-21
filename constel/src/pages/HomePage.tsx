@@ -5,11 +5,28 @@ import { AiFillDingtalkCircle } from "react-icons/ai";
 import { MdHome } from "react-icons/md";
 import Input from "../components/input";
 import { getMyAccount } from "../api/account";
+import Li from "../components/li";
+import { fetchPosts } from "../api/fetchPosts";
+import { createPost } from "../api/createPost";
 
 type Account = {
   full_name: string;
   email: string;
   picture: string;
+};
+
+type PostUser = {
+  username: string;
+  full_name: string;
+  picture: string;
+};
+
+type Post = {
+  post_id: string;
+  created_at: string;
+  image: string | null;
+  text: string;
+  user: PostUser;
 };
 
 export default function HomePage() {
@@ -20,29 +37,54 @@ export default function HomePage() {
     email: "",
     picture: "",
   });
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [newPostText, setNewPostText] = useState("");
 
   useEffect(() => {
-    async function fetchMe() {
+    async function fetchData() {
       const token = localStorage.getItem("token");
       if (!token) return navigate("/login");
-      if (token && account["full_name"]) return;
 
       try {
-        const data: any = await getMyAccount(token);
+        // Promise.all
+        const meData: any = await getMyAccount(token);
+        if (meData.status === "ok") setAccount(meData.account);
 
-        if (data.status === "ok") {
-          setAccount(data.account);
-        }
+        const postsData: any = await fetchPosts(token);
+        if (postsData.status === "ok") setPosts(postsData.posts);
       } catch (err) {
-        console.error("Failed to fetch user data", err);
+        console.error("Failed to fetch data", err);
       }
     }
 
-    fetchMe();
+    fetchData();
   }, [navigate]);
 
   function handleLogout() {
     localStorage.removeItem("token");
+    navigate("/login");
+  }
+
+  async function handleCreatePost(e: React.FormEvent) {
+    e.preventDefault();
+
+    const token = localStorage.getItem("token");
+    if (!token || !newPostText.trim()) return;
+
+    try {
+      const data: any = await createPost(token, newPostText);
+
+      if (data.status === "ok") {
+        const postsData: any = await fetchPosts(token);
+        if (postsData.status === "ok") {
+          setPosts(postsData.posts);
+        }
+
+        setNewPostText("");
+      }
+    } catch (err) {
+      console.error("Failed to create post", err);
+    }
   }
 
   return (
@@ -55,7 +97,7 @@ export default function HomePage() {
         </div>
       </div>
       <div className="posts-div">
-        <form className="new-post-form">
+        <form className="new-post-form" onSubmit={handleCreatePost}>
           <div className="input-picture-div">
             <img
               src={account.picture}
@@ -66,6 +108,8 @@ export default function HomePage() {
               type="text"
               className="post-input"
               placeholder="What's happening?"
+              value={newPostText}
+              onChange={(e) => setNewPostText(e.target.value)}
             />
           </div>
           <div className="post-btn-div">
@@ -74,16 +118,15 @@ export default function HomePage() {
             </Btn>
           </div>
         </form>
+        <ul className="posts-ul">
+          {posts.map((post) => (
+            <Li key={post.post_id} post={post} />
+          ))}
+        </ul>
       </div>
       <div className="logOut-div">
-        <img
-          src={account.picture}
-          alt="User profile"
-          className="profile-picture"
-        />
-
         <Btn className="logOut-btn" onClick={handleLogout}>
-          Log Out
+          Log out
         </Btn>
       </div>
     </section>
